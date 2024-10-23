@@ -1,6 +1,9 @@
 package app;
 
 import dados.Acervo;
+import dados.Diretor;
+import dados.Filme;
+import dados.Seriado;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -45,19 +48,65 @@ public class ACMEVideos{
     }
 
     public void processar(){
+        //passo 1
         while (sc.hasNextLine()) {
             String linha = sc.nextLine();
             String[] elementos = linha.split(separadorDeLinha); // Separar os elementos da linha utilizando o separador ";"
 
-            
-         
-            
-
-
-
-
+            switch (Integer.parseInt(elementos[0])) {
+                case 1:
+                    Filme filme = new Filme((Integer.parseInt(elementos[1])),elementos[2],elementos[3], Double.parseDouble(elementos[4]));
+                    if(acervo.addVideo(filme)){
+                        System.out.println("1:" +filme.geraTexto());
+                    }
+                    break;
+                case 2:
+                    Seriado seriado = new Seriado((Integer.parseInt(elementos[1])),elementos[2],(Integer.parseInt(elementos[3])),(Integer.parseInt(elementos[4])),(Integer.parseInt(elementos[5])));
+                    if(acervo.addVideo(seriado)){
+                        System.out.println("1:" + seriado.geraTexto());
+                    }
+                    break;    
+                default:
+                    break;
+            }
 
         }
-    }
+        
+        //passo 2
+        tituloLongo();
+
+        //passo 3
+        custoBaixo();
+
+        //passo 4
+        maiorExebicao();
+
+        //passo 5
+        diretorMaisCopeiro();
 
     }
+
+    public void tituloLongo(){
+        String retorno = "2:"+ acervo.tituloMaisLongo().getCodigo() +"," + acervo.tituloMaisLongo().getTitulo();
+        System.out.println(retorno);
+    }
+
+    public void custoBaixo(){
+        String retorno = "3:"+ acervo.custoMenor().getCodigo()+","+acervo.custoMenor().getTitulo()+","+ String.format("%.2f",(acervo.custoMenor().calculaCusto()));
+        System.out.println(retorno);
+    }
+
+    public void maiorExebicao(){
+        Seriado seriado = acervo.seriadoMaisVelho();
+        String retorno = "4:"+ seriado.getCodigo()+","+seriado.getTitulo()+","+seriado.getIdade();
+        System.out.println(retorno);
+    }
+
+    public void diretorMaisCopeiro(){
+        Diretor diretor = acervo.diretorMaisFilmes();
+        String retorno = "5:"+ diretor.getNome()+ ","+ diretor.getCount();
+        System.out.println(retorno);
+    }
+
+
+}

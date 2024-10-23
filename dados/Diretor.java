@@ -7,7 +7,7 @@ public class Diretor {
 
     public Diretor(String nome){
         this.nome = nome;
-        this.count = 0;
+        this.count = 1;
     }
 
     public int getCount() {

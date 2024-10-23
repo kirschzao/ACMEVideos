@@ -1,6 +1,5 @@
 package dados;
 import java.util.ArrayList;
-import java.util.regex.MatchResult;
 
 public class Acervo{
     private ArrayList<Video> listaVideos;
@@ -49,11 +48,12 @@ public class Acervo{
     }
 
     public Video custoMenor(){
-        double custo = 0;
+        double custo = 100000000;
         int codigo = 00;
         for (Video vi : listaVideos){
-            if(custo < vi.calculaCusto()){
+            if(custo > vi.calculaCusto()){
                 codigo = vi.getCodigo();
+                custo = vi.calculaCusto();
             }
         }
         
@@ -80,7 +80,7 @@ public class Acervo{
     public Diretor diretorMaisFilmes(){
         Diretor suporte = new Diretor(null);
         for (Diretor dir : listaDiretores) {
-            if(dir.getCount() > suporte.getCount()){
+            if(dir.getCount() >= suporte.getCount()){
                 suporte = dir;
             }
         }

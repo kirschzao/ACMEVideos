@@ -31,7 +31,7 @@ public class Acervo{
         return true;
     }
 
-    public Video tituloMaisLongo(){
+    public Video tituloMaisLongo() throws Exception{
         String nome = "";
         for (Video vi : listaVideos){
             if(nome.length() < (vi.getTitulo()).length()){
@@ -44,10 +44,10 @@ public class Acervo{
                 return v;
             }
         }
-        return null;
+        throw new Exception("nenhum vídeo cadastrado.");
     }
 
-    public Video custoMenor(){
+    public Video custoMenor() throws Exception{
         double custo = 100000000;
         int codigo = 00;
         for (Video vi : listaVideos){
@@ -62,22 +62,25 @@ public class Acervo{
                 return v;
             }
         }
-        return null;
+        throw new Exception("nenhum vídeo cadastrado.");
     } 
 
-    public Seriado seriadoMaisVelho(){
-        Seriado maisVelho = new Seriado(0,"",0,0,0);
+    public Seriado seriadoMaisVelho() throws Exception{
+        Seriado maisVelho = null;
         for(Video v: listaVideos){
             if(v instanceof Seriado){
-                if(((Seriado) v).getIdade() > maisVelho.getIdade()){
+                if(maisVelho == null || ((Seriado) v).getIdade() > maisVelho.getIdade()){
                     maisVelho = (Seriado) v;
                 }
             }
         }
+        if(maisVelho == null){
+            throw new Exception("nenhum seriado cadastrado.");
+        }
         return maisVelho;
     }
 
-    public Diretor diretorMaisFilmes(){
+    public Diretor diretorMaisFilmes() throws Exception{
         Diretor suporte = new Diretor(null);
         for (Diretor dir : listaDiretores) {
             if(dir.getCount() >= suporte.getCount()){
@@ -85,7 +88,7 @@ public class Acervo{
             }
         }
         if(suporte.getNome() == null){
-            return null;
+            throw new Exception("nenhum Filme cadastrado.");
         }
         return suporte;
     }

@@ -91,27 +91,44 @@ public class ACMEVideos{
     }
 
     public void tituloLongo(){
-        Video video = acervo.tituloMaisLongo();
-        String retorno = "2:"+video.getCodigo() +"," + video.getTitulo();
-        System.out.println(retorno);
+        try {
+            Video video = acervo.tituloMaisLongo();
+            String retorno = "2:"+video.getCodigo() +"," + video.getTitulo();
+            System.out.println(retorno);
+        } catch (Exception e) {
+            System.out.println("2:Erro - "+ e.getMessage());
+        }
+        
     }
 
     public void custoBaixo(){
-        Video video = acervo.custoMenor();
-        String retorno = "3:"+ video.getCodigo()+","+video.getTitulo()+","+ String.format("%.2f",(video.calculaCusto()));
-        System.out.println(retorno);
+       try{
+            Video video = acervo.custoMenor();
+            String retorno = "3:"+ video.getCodigo()+","+video.getTitulo()+","+ String.format("%.2f",(video.calculaCusto()));
+            System.out.println(retorno);
+       }catch(Exception e){
+            System.out.println("3:Erro - "+ e.getMessage());
+       }
     }
 
     public void maiorExebicao(){
-        Seriado seriado = acervo.seriadoMaisVelho();
-        String retorno = "4:"+ seriado.getCodigo()+","+seriado.getTitulo()+","+seriado.getIdade();
-        System.out.println(retorno);
+        try{
+            Seriado seriado = acervo.seriadoMaisVelho();
+            String retorno = "4:"+ seriado.getCodigo()+","+seriado.getTitulo()+","+seriado.getIdade();
+            System.out.println(retorno);
+        }catch(Exception e){
+            System.out.println("4:Erro - "+ e.getMessage());
+        }    
     }
 
     public void diretorMaisCopeiro(){
-        Diretor diretor = acervo.diretorMaisFilmes();
-        String retorno = "5:"+ diretor.getNome()+ ","+ diretor.getCount();
-        System.out.println(retorno);
+        try{
+            Diretor diretor = acervo.diretorMaisFilmes();
+            String retorno = "5:"+ diretor.getNome()+ ","+ diretor.getCount();
+            System.out.println(retorno);
+        }catch(Exception e){
+            System.out.println("5:Erro - "+ e.getMessage());
+        }    
     }
 
     public void calculodeDP(){ 

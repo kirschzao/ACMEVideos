@@ -108,4 +108,14 @@ public class Acervo{
         }
         return menorDesvio;
     }
+
+    public double media(){
+        double denominador = listaVideos.size();
+        double numerador = 0;
+        for (Video v : listaVideos) {
+            numerador = numerador + v.calculaCusto();
+        }
+        double media = numerador/denominador;
+        return media;
+    }
 }

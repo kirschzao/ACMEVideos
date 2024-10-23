@@ -4,6 +4,7 @@ import dados.Acervo;
 import dados.Diretor;
 import dados.Filme;
 import dados.Seriado;
+import dados.Video;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -84,15 +85,19 @@ public class ACMEVideos{
         //passo 5
         diretorMaisCopeiro();
 
+        //passo 6 - bonus
+        calculodeDP();
     }
 
     public void tituloLongo(){
-        String retorno = "2:"+ acervo.tituloMaisLongo().getCodigo() +"," + acervo.tituloMaisLongo().getTitulo();
+        Video video = acervo.tituloMaisLongo();
+        String retorno = "2:"+video.getCodigo() +"," + video.getTitulo();
         System.out.println(retorno);
     }
 
     public void custoBaixo(){
-        String retorno = "3:"+ acervo.custoMenor().getCodigo()+","+acervo.custoMenor().getTitulo()+","+ String.format("%.2f",(acervo.custoMenor().calculaCusto()));
+        Video video = acervo.custoMenor();
+        String retorno = "3:"+ video.getCodigo()+","+video.getTitulo()+","+ String.format("%.2f",(video.calculaCusto()));
         System.out.println(retorno);
     }
 
@@ -105,6 +110,12 @@ public class ACMEVideos{
     public void diretorMaisCopeiro(){
         Diretor diretor = acervo.diretorMaisFilmes();
         String retorno = "5:"+ diretor.getNome()+ ","+ diretor.getCount();
+        System.out.println(retorno);
+    }
+
+    public void calculodeDP(){ 
+        String texto = acervo.menorDesvioPadrao().geraTexto();
+        String retorno = "6:"+ String.format("%.2f",(acervo.media()))+","+ texto;
         System.out.println(retorno);
     }
 

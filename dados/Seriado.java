@@ -5,12 +5,14 @@ public class Seriado extends Video{
     private int anoInicio;
     private int anoFim;
     private int numEpisodios;
+    private int idade;
 
     public Seriado (int codigo, String titulo, int anoInicio, int anoFim, int numEpisodios){
         super(codigo , titulo);  
         this.anoFim = anoFim;
         this.anoInicio = anoInicio;     
         this.numEpisodios = numEpisodios;
+        this.idade = (anoFim - anoInicio);
     }
     
     @Override
@@ -37,4 +39,7 @@ public class Seriado extends Video{
         return this.numEpisodios;
     }
 
+    public int getIdade(){
+        return this.idade;
+    }
 }

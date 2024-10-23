@@ -54,15 +54,15 @@ public class ACMEVideos{
             String linha = sc.nextLine();
             String[] elementos = linha.split(separadorDeLinha); // Separar os elementos da linha utilizando o separador ";"
 
-            switch (Integer.parseInt(elementos[0])) {
+            switch (Integer.parseInt(elementos[0].trim())) {
                 case 1:
-                    Filme filme = new Filme((Integer.parseInt(elementos[1])),elementos[2],elementos[3], Double.parseDouble(elementos[4]));
+                    Filme filme = new Filme((Integer.parseInt(elementos[1].trim())),elementos[2].trim(),elementos[3].trim(), Double.parseDouble(elementos[4].trim()));
                     if(acervo.addVideo(filme)){
                         System.out.println("1:" +filme.geraTexto());
                     }
                     break;
                 case 2:
-                    Seriado seriado = new Seriado((Integer.parseInt(elementos[1])),elementos[2],(Integer.parseInt(elementos[3])),(Integer.parseInt(elementos[4])),(Integer.parseInt(elementos[5])));
+                    Seriado seriado = new Seriado((Integer.parseInt(elementos[1].trim())),elementos[2].trim(),(Integer.parseInt(elementos[3].trim())),(Integer.parseInt(elementos[4].trim())),(Integer.parseInt(elementos[5].trim())));
                     if(acervo.addVideo(seriado)){
                         System.out.println("1:" + seriado.geraTexto());
                     }
@@ -87,6 +87,7 @@ public class ACMEVideos{
 
         //passo 6 - bonus
         calculodeDP();
+
     }
 
     public void tituloLongo(){

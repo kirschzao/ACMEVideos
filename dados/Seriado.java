@@ -12,7 +12,7 @@ public class Seriado extends Video{
         this.anoFim = anoFim;
         this.anoInicio = anoInicio;     
         this.numEpisodios = numEpisodios;
-        this.idade = (anoFim - anoInicio);
+        this.idade = (anoFim - anoInicio +1);
     }
     
     @Override

@@ -93,16 +93,10 @@ public class Acervo{
         return suporte;
     }
 
-    public Video menorDesvioPadrao(){
-        double denominador = listaVideos.size();
-        double numerador = 0;
-        for (Video v : listaVideos) {
-            numerador = numerador + v.calculaCusto();
-        }
-        double media = numerador/denominador;
+    public Video menorDesvioPadrao() throws Exception{
+        double media = media();
         double menorDP = 10;
         Video menorDesvio = listaVideos.get(0);
-
         for (Video v : listaVideos) {
             if( Math.abs(media-v.calculaCusto()) < menorDP){
                 menorDP = Math.abs(media-v.calculaCusto());
@@ -112,11 +106,15 @@ public class Acervo{
         return menorDesvio;
     }
 
-    public double media(){
+    public double media() throws Exception{
         double denominador = listaVideos.size();
         double numerador = 0;
         for (Video v : listaVideos) {
             numerador = numerador + v.calculaCusto();
+        }
+        
+        if(denominador == 0){
+            throw new Exception("problema aritmético no desvio padrão.");
         }
         double media = numerador/denominador;
         return media;

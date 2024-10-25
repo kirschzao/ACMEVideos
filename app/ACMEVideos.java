@@ -50,21 +50,24 @@ public class ACMEVideos{
 
     public void processar(){
         //passo 1
-        while (sc.hasNextLine()) {
+        while (sc.hasNextLine()) { 
             String linha = sc.nextLine();
-            String[] elementos = linha.split(separadorDeLinha); // Separar os elementos da linha utilizando o separador ";"
-
+            String[] elementos = linha.split(";"); // Separar os elementos da linha utilizando o separador ";"
             switch (Integer.parseInt(elementos[0].trim())) {
                 case 1:
                     Filme filme = new Filme((Integer.parseInt(elementos[1].trim())),elementos[2].trim(),elementos[3].trim(), Double.parseDouble(elementos[4].trim()));
                     if(acervo.addVideo(filme)){
                         System.out.println("1:" +filme.geraTexto());
+                    }else{
+                        System.out.println("1:Erro - código de vídeo repetido");
                     }
                     break;
                 case 2:
                     Seriado seriado = new Seriado((Integer.parseInt(elementos[1].trim())),elementos[2].trim(),(Integer.parseInt(elementos[3].trim())),(Integer.parseInt(elementos[4].trim())),(Integer.parseInt(elementos[5].trim())));
                     if(acervo.addVideo(seriado)){
                         System.out.println("1:" + seriado.geraTexto());
+                    }else{
+                        System.out.println("1:Erro - código de vídeo repetido");
                     }
                     break;    
                 default:
@@ -132,10 +135,12 @@ public class ACMEVideos{
     }
 
     public void calculodeDP(){ 
-        String texto = acervo.menorDesvioPadrao().geraTexto();
-        String retorno = "6:"+ String.format("%.2f",(acervo.media()))+","+ texto;
-        System.out.println(retorno);
+        try{
+            String texto = acervo.menorDesvioPadrao().geraTexto();
+            String retorno = "6:"+ String.format("%.2f",(acervo.media()))+","+ texto;
+            System.out.println(retorno);
+        }catch(Exception e){
+            System.out.println("6:Erro - "+ e.getMessage());
+        }
     }
-
-
 }
